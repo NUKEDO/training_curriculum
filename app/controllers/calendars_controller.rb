@@ -35,6 +35,19 @@ class CalendarsController < ApplicationController
         today_plans.push(plan.plan) if plan.date == @todays_date + x
       end
       days = { month: (@todays_date + x).month, date: (@todays_date + x).day, plans: today_plans, wday: wdays[(@todays_date + x).wday]}
+      # カリキュラムを完全にスクロールせずに解いたので、別パターンの回答になってます。
+
+      # カリキュラムのパターン①で行った場合は以下になります。
+      # today_plans = []
+      # plan = plans.map do |plan|
+      #   today_plans.push(plan.plan) if plan.date == @todays_date + x
+      # end
+      # wday_num = @todays_date.wday + x
+      # if wday_num >= 7
+      #   wday_num = wday_num - 7
+      # end
+      # days = { month: (@todays_date + x).month, date: (@todays_date + x).day, plans: today_plans, wday: wdays[wday_num]}
+
       @week_days.push(days)
     end
 
